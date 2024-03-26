@@ -33,7 +33,11 @@ from utilities import get_links_from_html
 from utilities import filter_links_pdffile_only
 from utilities import pdf_to_text
 from utilities import load_text_file
-from utilities import extract_data
+from extraction import extract_court_name
+from extraction import extract_proc_id
+from extraction import extract_type
+from extraction import extract_judge
+from extraction import filter_str
 from google_storage import GoogleStorage
 from googleapiclient.discovery import build
 
@@ -110,10 +114,17 @@ with session as s:
             
             # extract data from the text
             textfile_path = str(Path(f"{downloads_dir}/{filename.replace('.pdf', '.txt')}").absolute())
-            data = extract_data(load_text_file(textfile_path))
+            text = load_text_file(textfile_path)
             
+            data = {}
+            
+            data["proc_id"] = extract_proc_id(text)
+            data["court_name"] = extract_court_name(text)
+            data["type"] = extract_type(text)
+            data["judge"] = extract_judge(text)
             data['date'] = get_yesterday_date()[1]
             data['fileurl'] = f"https://storage.cloud.google.com/{os.getenv('STORAGE')}/{filename}/"
+            data["text"] = filter_str("".join(text))
             
             # send the data to google sheets
             service.spreadsheets().values().append(
