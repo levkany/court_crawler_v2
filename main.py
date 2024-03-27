@@ -123,7 +123,7 @@ with session as s:
             data["type"] = extract_type(text)
             data["judge"] = extract_judge(text)
             data['date'] = get_yesterday_date()[1]
-            data['fileurl'] = f"https://storage.cloud.google.com/{os.getenv('STORAGE')}/{filename}/"
+            data['fileurl'] = f"https://storage.cloud.google.com/{os.getenv('STORAGE')}/{filename}/?authuser=1"
             data["text"] = filter_str("".join(text))
             
             # send the data to google sheets
