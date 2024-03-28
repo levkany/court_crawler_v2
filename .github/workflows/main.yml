@@ -4,13 +4,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@main
-      with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          EXCLUDE: .git, .github
-          
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: SSH Server Deploy
+        uses: kostya-ten/ssh-server-deploy@v4
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: 22
+          username: ${{ secrets.REMOTE_USER }}
+          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          scp_source: ./
+          scp_target: ~/
