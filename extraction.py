@@ -46,7 +46,7 @@ def extract_proc_id(lines:List[str]) -> str:
     returns the id of the document if exists
     """
     
-    pattern = r'(\d{4}|\d{5}|\d{6}|\d{7})-\d{2}-\d{2}'
+    pattern = r'(\d+)-\d{2}-\d{2}'
     
     for line in lines:
         line = line.strip()
