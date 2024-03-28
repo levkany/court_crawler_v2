@@ -14,4 +14,4 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           scp_source: ./
-          scp_target: ~/
+          scp_target: ~/src
