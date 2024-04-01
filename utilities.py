@@ -59,12 +59,9 @@ def match_word_root(word:str=''):
 
 
 def get_yesterday_date() -> Tuple[str, str]:
-    date = datetime.date.today()
-    year = date.year
-    month = date.month
     previous_day = datetime.datetime.today() - datetime.timedelta(days=2)
-    formatted_date_1 = str(year) + '/' + str(month) + '/' + str(previous_day.day)
-    formatted_date_2 = str(year) + '-' + str(month) + '-' + str(previous_day.day)
+    formatted_date_1 = str(previous_day.year) + '/' + str(previous_day.month) + '/' + str(previous_day.day)
+    formatted_date_2 = str(previous_day.year) + '-' + str(previous_day.month) + '-' + str(previous_day.day)
     return (formatted_date_1, formatted_date_2)
 
 
