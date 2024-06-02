@@ -40,7 +40,7 @@ from extraction import extract_judge
 from extraction import filter_str
 from google_storage import GoogleStorage
 from googleapiclient.discovery import build
-from .logger import logger
+from logger import logger
 
 load_dotenv()
 os.environ.update({
