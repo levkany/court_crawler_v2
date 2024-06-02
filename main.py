@@ -40,7 +40,7 @@ from extraction import extract_judge
 from extraction import filter_str
 from google_storage import GoogleStorage
 from googleapiclient.discovery import build
-
+from .logger import logger
 
 load_dotenv()
 os.environ.update({
@@ -51,9 +51,6 @@ if not os.path.isdir('./downloads'):
     os.mkdir('./downloads')
     
 downloads_dir = str(Path('./downloads').absolute())
-
-logging.basicConfig(level=logging.INFO, format='[%(levelname)s] - %(message)s')
-logger = logging.getLogger('crawler')
 logger.info('script started')
 
 storage = GoogleStorage(os.getenv("STORAGE"))
