@@ -42,9 +42,11 @@ from google_storage import GoogleStorage
 from googleapiclient.discovery import build
 from logger import logger
 
+
+abspath = os.path.abspath(os.path.dirname(__file__))
 load_dotenv()
 os.environ.update({
-    'GOOGLE_APPLICATION_CREDENTIALS': str(Path('./google_service_key.json').absolute())
+    'GOOGLE_APPLICATION_CREDENTIALS': str(Path(f'{abspath}/google_service_key.json').absolute())
 })
 
 if not os.path.isdir('./downloads'):
